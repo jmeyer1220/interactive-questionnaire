@@ -1,5 +1,5 @@
 import React from 'react';
-import * as RadioGroup from '..components/ui/radio-group';
+import * as RadioGroup from '../components/ui/radio-group';
 
 const Question = ({ question, options, type, onAnswer }) => {
   const [textValue, setTextValue] = React.useState('');
