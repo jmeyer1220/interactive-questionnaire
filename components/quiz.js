@@ -5,6 +5,7 @@ import Result from './result.js';
 const questions = {
   start: {
     question: "Which of the following describes your organization type?",
+    type: "radio",
     options: [
       { label: "Church Plant", next: "churchPlant" },
       { label: "Established Church", next: "churchSize" },
@@ -14,7 +15,8 @@ const questions = {
     ],
   },
   churchSize: {
-    question: "What size is your church’s average weekly attendance?",
+    question: "What size is your church's average weekly attendance?",
+    type: "radio",
     options: [
       { label: "Less than 250", next: "smallChurch" },
       { label: "250–1,000", next: "mediumChurch" },
@@ -22,12 +24,17 @@ const questions = {
       { label: "Over 1,000 with multiple campuses or sites", next: "multiSiteChurch" },
     ],
   },
-  // Add more questions based on the PDF content
-  // Example:
   churchPlant: {
-    question: "Tell us about your vision!",
-    options: [],
+    question: "Tell us about your vision for your church plant.",
+    type: "text",
+    next: "end",
   },
+  smallChurch: {
+    question: "What are the main challenges your small church is facing?",
+    type: "text",
+    next: "end",
+  },
+  // Add more questions here...
 };
 
 const Quiz = () => {
@@ -39,15 +46,18 @@ const Quiz = () => {
     setCurrentQuestionKey(nextKey);
   };
 
-  if (!questions[currentQuestionKey]) {
+  if (currentQuestionKey === 'end') {
     return <Result answers={answers} />;
   }
+
+  const currentQuestion = questions[currentQuestionKey];
 
   return (
     <div className="p-4">
       <Question 
-        question={questions[currentQuestionKey].question} 
-        options={questions[currentQuestionKey].options} 
+        question={currentQuestion.question} 
+        options={currentQuestion.options} 
+        type={currentQuestion.type}
         onAnswer={handleAnswer} 
       />
     </div>

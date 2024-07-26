@@ -1,18 +1,13 @@
-import Head from 'next/head';
-import Quiz from '@/components/quiz.js';
+import React from 'react';
+import Quiz from '../components/Quiz';
 
-export default function Home() {
+const QuizPage = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      <Head>
-        <title>Branding Questionnaire Quiz</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="flex flex-col items-center justify-center py-12 px-6">
-        <h1 className="text-4xl font-bold mb-8">ArtSpeak Branding Quiz</h1>
-        <Quiz />
-      </main>
+    <div className="container mx-auto mt-8">
+      <h1 className="text-3xl font-bold mb-4">Interactive Quiz</h1>
+      <Quiz />
     </div>
   );
-}
+};
+
+export default QuizPage;
