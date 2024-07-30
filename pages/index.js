@@ -1,13 +1,10 @@
-import React from 'react';
-import Quiz from '../components/quiz.js';
+import ArchetypeQuiz from '../components/ArchetypeQuiz'
 
-const QuizPage = () => {
+export default function Home() {
   return (
-    <div className="container mx-auto mt-8">
-      <h1 className="text-3xl font-bold mb-4">Interactive Quiz</h1>
-      <Quiz />
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-4">Archetype Quiz</h1>
+      <ArchetypeQuiz />
     </div>
-  );
-};
-
-export default QuizPage;
+  )
+}
