@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ThemeToggle from "../components/Switch"; // Adjust the path accordingly
 
 const archetypes = [
   "Visionary",
@@ -404,6 +405,23 @@ const ArchetypeQuiz = () => {
   const [submitError, setSubmitError] = useState(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
+  const [theme, toggleTheme] = useDarkMode();
+
+  // Load theme from localStorage on component mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      // setTheme(savedTheme); // setTheme is not returned by useDarkMode
+      // Instead, call the toggleTheme function to update the theme state
+      toggleTheme();
+    }
+  }, []);
+
+  // Apply theme to the document on theme change
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   const handleOptionChange = (questionIndex, optionIndex) => {
     setAnswers((prevAnswers) => {
       const newAnswers = { ...prevAnswers };
@@ -492,7 +510,7 @@ const ArchetypeQuiz = () => {
 
   if (results) {
     return (
-      <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             Your Top 3 Archetypes
@@ -551,11 +569,14 @@ const ArchetypeQuiz = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="px-4 py-5 sm:px-6">
         <h3 className="text-lg leading-6 font-medium text-gray-900">
           Question {currentQuestion + 1} of {questions.length}
         </h3>
+      </div>
+      <div className="absolute top-4 right-4">
+        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-6">
         <p className="mb-4 text-sm text-gray-500">
@@ -592,3 +613,15 @@ const ArchetypeQuiz = () => {
 };
 
 export default ArchetypeQuiz;
+
+function useDarkMode() {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  return [theme, toggleTheme];
+}
