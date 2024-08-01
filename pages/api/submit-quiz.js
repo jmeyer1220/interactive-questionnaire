@@ -65,60 +65,12 @@ async function addContactToHubSpot(email, results, answers) {
     // Ensure custom properties exist
     await ensureCustomPropertiesExist(hubspotAccessToken);
 
-    // Search for existing contact
-    const searchResponse = await axios.post(
-      `https://api.hubapi.com/crm/v3/objects/contacts/search`,
-      {
-        filterGroups: [
-          {
-            filters: [
-              {
-                propertyName: "email",
-                operator: "EQ",
-                value: email,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${hubspotAccessToken}`,
-        },
-      },
-    );
-
-    let contactId;
-    if (searchResponse.data.total > 0) {
-      // Contact exists, get their ID
-      contactId = searchResponse.data.results[0].id;
-      console.log("Existing contact found:", contactId);
-    } else {
-      // Contact doesn't exist, create a new one
-      const createResponse = await axios.post(
-        "https://api.hubapi.com/crm/v3/objects/contacts",
-        {
-          properties: {
-            email: email,
-          },
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${hubspotAccessToken}`,
-          },
-        },
-      );
-      contactId = createResponse.data.id;
-      console.log("New contact created:", contactId);
-    }
-
-    // Update the contact with quiz results
-    const updateResponse = await axios.patch(
-      `https://api.hubapi.com/crm/v3/objects/contacts/${contactId}`,
+    // Create or update contact
+    const createOrUpdateResponse = await axios.post(
+      "https://api.hubapi.com/crm/v3/objects/contacts",
       {
         properties: {
+          email: email,
           quiz_results: JSON.stringify(results),
           quiz_answers: JSON.stringify(answers),
         },
@@ -131,8 +83,8 @@ async function addContactToHubSpot(email, results, answers) {
       },
     );
 
-    console.log("Contact updated in HubSpot:", updateResponse.data);
-    return updateResponse.data;
+    console.log("Contact created or updated in HubSpot:", createOrUpdateResponse.data);
+    return createOrUpdateResponse.data;
   } catch (error) {
     console.error(
       "Error in HubSpot integration:",
@@ -190,7 +142,7 @@ export default async function handler(req, res) {
 
       // Add/update subscriber in Mailchimp
       console.log("Adding/updating subscriber in Mailchimp...");
-      //await addSubscriberToMailchimp(email, results, answers);
+      await addSubscriberToMailchimp(email, results, answers);
 
       res.status(200).json({
         message: "Quiz results submitted successfully and synced with HubSpot and Mailchimp",
