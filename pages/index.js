@@ -9,7 +9,7 @@ export default function Home() {
       </div>
 
 <div class="relative h-32 w-32">
-<div class="absolute inset-y-0 right-0 w-16"><h1 className="text-6xl  font-bold mb-4">ARCHETYPE/h1></div>
+<div class="absolute inset-y-0 right-0 w-16"><h1 className="text-6xl  font-bold mb-4">ARCHETYPE</h1></div>
 </div>
       <ArchetypeQuiz />
     </div>
