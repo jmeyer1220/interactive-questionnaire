@@ -610,7 +610,7 @@ const ArchetypeQuiz = () => {
           onClick={handleNext}
           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-copper-400 hover:bg-copper-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-copper-100"
         >
-          {currentQuestion < questions.length - 1 ? "Next Question" : "Get Results"}
+          {currentQuestion < questions.length - 1 ? "Next Question" : "Email Me Info About My Archetype"}
         </button>
       </div>
     </div>
