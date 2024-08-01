@@ -149,7 +149,7 @@ const questions = [
         weight: 2,
       },
       {
-        text: "Hopeful, Kind, Good-Natured.",
+        text: "Hopeful. Kind. Good-Natured.",
         archetypes: ["Optimist"],
         weight: 2,
       },

@@ -190,7 +190,7 @@ export default async function handler(req, res) {
 
       // Add/update subscriber in Mailchimp
       console.log("Adding/updating subscriber in Mailchimp...");
-      await addSubscriberToMailchimp(email, results, answers);
+      //await addSubscriberToMailchimp(email, results, answers);
 
       res.status(200).json({
         message: "Quiz results submitted successfully and synced with HubSpot and Mailchimp",
