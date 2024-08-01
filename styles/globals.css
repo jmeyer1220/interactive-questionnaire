@@ -117,6 +117,10 @@ html[data-theme="dark"] {
   background-color: var(--neutral-dark-30); /* Dark gray background */
 }
 
+[data-theme="light"] .bg-white  {
+  background-color: var( --neutral-light-30:);
+}
+
 [data-theme="dark"] .bg-white  {
   background-color: var(--neutral-dark-30);
 }
