@@ -5,6 +5,7 @@ import mailchimp from "@mailchimp/mailchimp_marketing";
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
   server: process.env.MAILCHIMP_SERVER, // e.g., 'us8'
+  listID: process.env.MAILCHIMP_AUDIENCE_ID,
 });
 
 
@@ -100,7 +101,8 @@ async function addSubscriberToMailchimp(email, results, answers) {
     await mailchimp.ping.get();
     console.log("Successfully connected to Mailchimp");
     console.log(process.env.MAILCHIMP_AUDIENCE_ID);
-
+ 
+    const listID = process.env.MAILCHIMP_AUDIENCE_ID
     // Assuming results is an array of [archetype, score] pairs
     const topArchetype = results[0][0];
     const tag = `Archetype:${topArchetype}`;
