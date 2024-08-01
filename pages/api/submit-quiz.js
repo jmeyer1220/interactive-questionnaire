@@ -177,15 +177,19 @@ async function addSubscriberToMailchimp(email, results, answers) {
   }
 }
 
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { email, results, answers } = req.body;
+    console.log("Received data:", { email, results, answers });
 
     try {
       // Add/update contact in HubSpot
+      console.log("Adding/updating contact in HubSpot...");
       await addContactToHubSpot(email, results, answers);
 
       // Add/update subscriber in Mailchimp
+      console.log("Adding/updating subscriber in Mailchimp...");
       await addSubscriberToMailchimp(email, results, answers);
 
       res.status(200).json({

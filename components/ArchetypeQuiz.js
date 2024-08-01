@@ -477,10 +477,10 @@ const ArchetypeQuiz = () => {
       setSubmitError("Please enter a valid email address.");
       return;
     }
-
+  
     setIsSubmitting(true);
     setSubmitError(null);
-
+  
     try {
       // Replace this with your actual API endpoint
       const response = await fetch("/api/submit-quiz", {
@@ -494,11 +494,13 @@ const ArchetypeQuiz = () => {
           answers,
         }),
       });
-
+  
       if (!response.ok) {
+        const errorData = await response.json();
+        console.error("API response error:", errorData);
         throw new Error("Failed to submit results");
       }
-
+  
       setSubmitSuccess(true);
     } catch (error) {
       console.error("Error submitting email:", error);
