@@ -569,7 +569,7 @@ const ArchetypeQuiz = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden z-40">
       <div className="px-4 py-5 sm:px-6">
         <h3 className="text-2xl leading-6 font-bold text-gray-900">
           Question {currentQuestion + 1} of {questions.length}
