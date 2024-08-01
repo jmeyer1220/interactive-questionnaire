@@ -99,6 +99,7 @@ async function addSubscriberToMailchimp(email, results, answers) {
     // Check Mailchimp connection
     await mailchimp.ping.get();
     console.log("Successfully connected to Mailchimp");
+    console.log(process.env.MAILCHIMP_AUDIENCE_ID);
 
     // Assuming results is an array of [archetype, score] pairs
     const topArchetype = results[0][0];
