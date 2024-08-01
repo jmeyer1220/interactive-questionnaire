@@ -575,7 +575,7 @@ const ArchetypeQuiz = () => {
           Question {currentQuestion + 1} of {questions.length}
         </h3>
       </div>
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-4 right-4 z-50">
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-6">
