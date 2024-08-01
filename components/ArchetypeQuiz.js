@@ -571,7 +571,7 @@ const ArchetypeQuiz = () => {
   return (
     <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden z-40">
       <div className="px-4 py-5 sm:px-6">
-        <h3 className="text-2xl leading-6 font-bold text-gray-900">
+        <h3 className="text-2xl leading-6 font-bold text-gray-900 font-bold">
           Question {currentQuestion + 1} of {questions.length}
         </h3>
       </div>
@@ -605,7 +605,7 @@ const ArchetypeQuiz = () => {
           onClick={handleNext}
           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-copper-400 hover:bg-copper-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-copper-100"
         >
-          {currentQuestion < questions.length - 1 ? "Next" : "Finish"}
+          {currentQuestion < questions.length - 1 ? "Next Question" : "Get Results"}
         </button>
       </div>
     </div>
