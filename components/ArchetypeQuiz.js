@@ -582,6 +582,9 @@ const ArchetypeQuiz = () => {
         <p className="mb-4 text-lg text-gray-500 font-bold">
           {questions[currentQuestion].question}
         </p>
+        <p className="mb-4 text-sm text-gray-400 font-medium">
+          Choose up to three
+        </p>
         {questions[currentQuestion].options.map((option, index) => (
           <div key={index} className="flex items-center mb-2">
             <input

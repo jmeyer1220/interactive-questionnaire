@@ -146,5 +146,26 @@ p {
 }
 
 button.bg-copper-400 {
- background-color: var(--secondary-40);
+  background-color: var(--secondary-40);
+  color: var(--white);
+  border-color: var(--secondary-20);
+}
+
+button.bg-copper-400:hover {
+  background-color: var(--secondary-20);
+  color: var(--white);
+  border-color: var(--secondary-40);
+}
+input[type="checkbox"] {
+  accent-color: var(--secondary-40);
+  column-count: var(--white);
+}
+
+.bg-blue-600.h-2\.5.rounded-full {
+  background-color: var(--secondary-40);
+  color: var(--white);
+}
+
+dd .w-full.bg-gray-200.rounded-full.h-2\.5 {
+  background-color: var(--black);
 }
