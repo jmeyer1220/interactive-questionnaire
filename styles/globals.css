@@ -144,3 +144,7 @@ h3 {
 p {
   font-family: 'Vollkorn', serif;
 }
+
+button.bg-copper-400 {
+ background-color: var(--secondary-40);
+}
