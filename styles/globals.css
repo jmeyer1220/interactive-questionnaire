@@ -1,9 +1,30 @@
 
-@config "../tailwind.config.js";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary-50: #f28d9c;
+  --primary: #e8014d;
+  --white: #FFF;
+  --neutral-light-10: #f7f3f5;
+  --neutral-light-20: #f0f0f0;
+  --neutral-light-30: #dadada;
+  --neutral-dark-10: #c4c4c4;
+  --neutral-dark-20: #888283;
+  --neutral-dark-30: #333;
+  --neutral-dark-40: #242424;
+  --black: #1d1d1d;
+  --secondary-10: #fbe1d1;
+  --secondary-20: #efba99;
+  --secondary-30: #d9a185;
+  --secondary-40: #c48972;
+  --tertiary-10: #e0cdc1;
+  --tertiary-20:#cdb5a6;
+  --tertiary-30:#aa866d;
+  --tertiary-40:#96705a;
+  --tertiary-50:#815b48;
+}
 
 /* Google Fonts import */
 @font-face {
@@ -39,32 +60,8 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-
 @import url('https://fonts.cdnfonts.com/css/morganite');
 
-
-:root {
-  --primary-50: #f28d9c;
-  --primary: #e8014d;
-  --white: #FFF;
-  --neutral-light-10: #f7f3f5;
-  --neutral-light-20: #f0f0f0;
-  --neutral-light-30: #dadada;
-  --neutral-dark-10: #c4c4c4;
-  --neutral-dark-20: #888283;
-  --neutral-dark-30: #333;
-  --neutral-dark-40: #242424;
-  --black: #1d1d1d;
-  --secondary-10: #fbe1d1;
-  --secondary-20: #efba99;
-  --secondary-30: #d9a185;
-  --secondary-40: #c48972;
-  --tertiary-10: #e0cdc1;
-  --tertiary-20:#cdb5a6;
-  --tertiary-30:#aa866d;
-  --tertiary-40:#96705a;
-  --tertiary-50:#815b48;
-}
 
 html,
 body {
