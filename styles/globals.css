@@ -1,3 +1,6 @@
+
+@config "./tailwind.config.js";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,7 +41,7 @@
 
 
 @import url('https://fonts.cdnfonts.com/css/morganite');
-                
+
 
 :root {
   --primary-50: #f28d9c;
