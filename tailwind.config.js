@@ -6,7 +6,6 @@ module.exports = {
     extend: {
       fontFamily: {
         'sans': ['Vollkorn', 'Abel', ...fontFamily.sans],
-      }
     }
   },
   content: [
