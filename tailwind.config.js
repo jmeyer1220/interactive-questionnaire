@@ -6,12 +6,11 @@ module.exports = {
     extend: {
       fontFamily: {
         'sans': ['Vollkorn', 'Abel', ...fontFamily.sans],
-    }
   },
+}
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   plugins: [],
-}
 }
