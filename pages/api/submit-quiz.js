@@ -138,7 +138,7 @@ export default async function handler(req, res) {
     try {
       // Add/update contact in HubSpot
       console.log("Adding/updating contact in HubSpot...");
-      await addContactToHubSpot(email, results, answers);
+      //await addContactToHubSpot(email, results, answers);
 
       // Add/update subscriber in Mailchimp
       console.log("Adding/updating subscriber in Mailchimp...");
