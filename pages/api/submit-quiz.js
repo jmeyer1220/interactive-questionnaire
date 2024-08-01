@@ -1,4 +1,12 @@
 import axios from "axios";
+import mailchimp from "@mailchimp/mailchimp_marketing";
+
+// Configure Mailchimp
+mailchimp.setConfig({
+  apiKey: process.env.MAILCHIMP_API_KEY,
+  server: process.env.MAILCHIMP_SERVER, // e.g., 'us8'
+});
+
 
 async function ensureCustomPropertiesExist(accessToken) {
   const properties = [
@@ -134,6 +142,41 @@ async function addContactToHubSpot(email, results, answers) {
   }
 }
 
+async function addSubscriberToMailchimp(email, results, answers) {
+  try {
+    // Check Mailchimp connection
+    await mailchimp.ping.get();
+    console.log("Successfully connected to Mailchimp");
+
+    // Assuming results is an array of [archetype, score] pairs
+    const topArchetype = results[0][0];
+    const tag = `Archetype:${topArchetype}`;
+
+    // Add or update subscriber
+    const response = await mailchimp.lists.addListMember(
+      process.env.MAILCHIMP_AUDIENCE_ID,
+      {
+        email_address: email,
+        status: "subscribed",
+        merge_fields: {
+          QUIZRESULTS: JSON.stringify(results),
+          QUIZANSWERS: JSON.stringify(answers),
+        },
+        tags: [tag],
+      }
+    );
+
+    console.log("Subscriber added/updated in Mailchimp:", response);
+    return response;
+  } catch (error) {
+    console.error(
+      "Error in Mailchimp integration:",
+      error.response ? error.response.data : error.message,
+    );
+    throw error;
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { email, results, answers } = req.body;
@@ -142,8 +185,11 @@ export default async function handler(req, res) {
       // Add/update contact in HubSpot
       await addContactToHubSpot(email, results, answers);
 
+      // Add/update subscriber in Mailchimp
+      await addSubscriberToMailchimp(email, results, answers);
+
       res.status(200).json({
-        message: "Quiz results submitted successfully and synced with HubSpot",
+        message: "Quiz results submitted successfully and synced with HubSpot and Mailchimp",
       });
     } catch (error) {
       console.error("Error processing quiz submission:", error);
@@ -155,52 +201,5 @@ export default async function handler(req, res) {
   } else {
     res.setHeader("Allow", ["POST"]);
     res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
-}
-
-async function addSubscriberToMailchimp(email, results, answers, tag) {
-  const mailchimpApiKey = process.env.MAILCHIMP_API_KEY;
-  const mailchimpAudienceId = process.env.MAILCHIMP_AUDIENCE_ID;
-  const mailchimpServer =  process.env.MAILCHIMP_SERVER; // E.g., "us8"
-
-  if (!mailchimpApiKey || !mailchimpAudienceId || !mailchimpServer) {
-    console.error("Mailchimp credentials are not set");
-    throw new Error("Mailchimp credentials are missing");
-  }
-
-  try {
-    const subscriberHash = crypto
-      .createHash("md5")
-      .update(email.toLowerCase())
-      .digest("hex");
-
-    // Add or update subscriber
-    const response = await axios.put(
-      `https://${mailchimpServer}.api.mailchimp.com/3.0/lists/${mailchimpAudienceId}/members/${subscriberHash}`,
-      {
-        email_address: email,
-        status_if_new: "subscribed",
-        merge_fields: {
-          QUIZRESULTS: JSON.stringify(results),
-          QUIZANSWERS: JSON.stringify(answers),
-        },
-        tags: [tag],
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${mailchimpApiKey}`,
-        },
-      },
-    );
-
-    console.log("Subscriber added/updated in Mailchimp:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error(
-      "Error in Mailchimp integration:",
-      error.response ? error.response.data : error.message,
-    );
-    throw error;
   }
 }
