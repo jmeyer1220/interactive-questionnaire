@@ -159,9 +159,9 @@ export default async function handler(req, res) {
 }
 
 async function addSubscriberToMailchimp(email, results, answers, tag) {
-  const mailchimpApiKey = process.env.MAILCHIMP_API_KEY;
-  const mailchimpAudienceId = process.env.MAILCHIMP_AUDIENCE_ID;
-  const mailchimpServer = process.env.MAILCHIMP_SERVER; // E.g., "us1"
+  const mailchimpApiKey = '6f97616690cb863b8c220947cd4ad5cf-us8'//process.env.MAILCHIMP_API_KEY;
+  const mailchimpAudienceId = '90889e1cb3' //process.env.MAILCHIMP_AUDIENCE_ID;
+  const mailchimpServer =  'us8' //process.env.MAILCHIMP_SERVER; // E.g., "us8"
 
   if (!mailchimpApiKey || !mailchimpAudienceId || !mailchimpServer) {
     console.error("Mailchimp credentials are not set");
