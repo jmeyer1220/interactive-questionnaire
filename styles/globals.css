@@ -53,7 +53,7 @@
   --neutral-dark-10: #c4c4c4;
   --neutral-dark-20: #888283;
   --neutral-dark-30: #333;
-  --neutral-dark-40: #1d1d1d;
+  --neutral-dark-40: #242424;
   --black: #1d1d1d;
   --secondary-10: #fbe1d1;
   --secondary-20: #efba99;
@@ -109,7 +109,7 @@ html[data-theme="dark"] {
 }
 
 [data-theme="dark"] .text-gray-500 {
-  color: var(  --secondary-40); /* Dark gray text */
+  color: var(--neutral-light-10);/* Dark gray text */
 }
 
 [data-theme="light"] .bg-gray-50 {
@@ -121,7 +121,7 @@ html[data-theme="dark"] {
 }
 
 [data-theme="dark"] .bg-white  {
-  background-color: var(--neutral-light-30);
+  background-color: var(--neutral-dark-30);
 }
 
 [data-theme="light"] .text-gray-900 {

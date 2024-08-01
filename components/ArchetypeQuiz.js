@@ -569,9 +569,9 @@ const ArchetypeQuiz = () => {
   }
 
   return (
-    <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="px-4 py-5 sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">
+        <h3 className="text-2xl leading-6 font-bold text-gray-900">
           Question {currentQuestion + 1} of {questions.length}
         </h3>
       </div>
@@ -579,7 +579,7 @@ const ArchetypeQuiz = () => {
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-6">
-        <p className="mb-4 text-sm text-gray-500">
+        <p className="mb-4 text-lg text-gray-500">
           {questions[currentQuestion].question}
         </p>
         {questions[currentQuestion].options.map((option, index) => (
@@ -603,7 +603,7 @@ const ArchetypeQuiz = () => {
       <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
         <button
           onClick={handleNext}
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-copper-400 hover:bg-copper-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-copper-100"
         >
           {currentQuestion < questions.length - 1 ? "Next" : "Finish"}
         </button>
