@@ -579,7 +579,7 @@ const ArchetypeQuiz = () => {
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-6">
-        <p className="mb-4 text-lg text-gray-500">
+        <p className="mb-4 text-lg text-gray-500 font-bold">
           {questions[currentQuestion].question}
         </p>
         {questions[currentQuestion].options.map((option, index) => (

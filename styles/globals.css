@@ -118,7 +118,7 @@ html[data-theme="dark"] {
 }
 
 [data-theme="light"] .bg-white  {
-  background-color: var( --neutral-light-30:);
+  background-color: var( --white);
 }
 
 [data-theme="dark"] .bg-white  {
@@ -135,4 +135,12 @@ html[data-theme="dark"] {
 
 h1 {
   font-family: 'Morganite', sans-serif;                                               
+}
+
+h3 {
+  font-family: 'Abel', sans-serif;
+}
+
+p {
+  font-family: 'Vollkorn', serif;
 }
